@@ -1,1 +1,1 @@
-worker: python GoogleTable.py
+worker: python3 GoogleTable.py
