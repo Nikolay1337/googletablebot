@@ -2,4 +2,3 @@ datetime
 httplib2
 apiclient
 telebot
-types
