@@ -1,7 +1,7 @@
-from _datetime import datetime
+import datetime
 import collections
 import httplib2
 import apiclient
-from oauth2client.service_account import ServiceAccountCredentials
+import ServiceAccountCredentials
 import telebot
-from telebot import types
+import types
