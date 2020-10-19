@@ -6,7 +6,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 import telebot
 from telebot import types
 
-mybot = telebot.TeleBot('1362978886:AAHgn2ednkWUgynezbOdui6Azqo657qhGIA')
+mybot = telebot.TeleBot('TOKEN_BOT')
 global dateperiod1
 global dateperiod2
 
