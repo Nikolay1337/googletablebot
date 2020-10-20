@@ -1,10 +1,10 @@
-from _datetime import datetime
+import datetime
 import collections
 import httplib2
 import apiclient
 from oauth2client.service_account import ServiceAccountCredentials
 import telebot
-from telebot import types
+
 
 mybot = telebot.TeleBot('1208352709:AAFlDEkHHonwjIkb32i9X9IvfK4jpqVBbsU')
 global dateperiod1
@@ -17,15 +17,15 @@ def messages(message):
 
 
 def buttons():
-    button1 = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    button1 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     button1.row('Задать период', 'Сортировка')
     return button1
 
 
 def inlinekeyboard():
-    butt = types.InlineKeyboardMarkup()
-    butt.row(types.InlineKeyboardButton('Новые', callback_data='Новых'),
-             types.InlineKeyboardButton('Старые', callback_data='Старых'))
+    butt = telebot.types.InlineKeyboardMarkup()
+    butt.row(telebot.types.InlineKeyboardButton('Новые', callback_data='Новых'),
+             telebot.types.InlineKeyboardButton('Старые', callback_data='Старых'))
     return butt
 
 
@@ -34,11 +34,14 @@ def feedbackstart(call):
     sp = list()
     peoplelist = list()
     p = ''
-    date1 = datetime(int(dateperiod1.split('.')[2]), int(dateperiod1.split('.')[1]), int(dateperiod1.split('.')[0]))
-    date2 = datetime(int(dateperiod2.split('.')[2]), int(dateperiod2.split('.')[1]), int(dateperiod2.split('.')[0]))
+    date1 = datetime.datetime(int(dateperiod1.split('.')[2]), int(dateperiod1.split('.')[1]),
+                              int(dateperiod1.split('.')[0]))
+    date2 = datetime.datetime(int(dateperiod2.split('.')[2]), int(dateperiod2.split('.')[1]),
+                              int(dateperiod2.split('.')[0]))
     for i in parsing():
         if len(i) == 4:
-            if date1 <= datetime(int(i[3].split('.')[2]), int(i[3].split('.')[1]), int(i[3].split('.')[0])) <= date2:
+            if date1 <= datetime.datetime(int(i[3].split('.')[2]), int(i[3].split('.')[1]),
+                                          int(i[3].split('.')[0])) <= date2:
                 peoplelist.append(i)
         else:
             mybot.send_message(call.message.chat.id, 'Кривая строка ' + str(i) + '. \nНачинайте всё сначала. /start')
@@ -70,14 +73,14 @@ def mess(message):
 
 
 def parsing():
-    CREDENTIALS_FILE = 'ProjectGoogleTable-6fb0a8a106c1.json'
-    credentials = ServiceAccountCredentials.from_json_keyfile_name(CREDENTIALS_FILE,
+    credentials_file = 'ProjectGoogleTable-6fb0a8a106c1.json'
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(credentials_file,
                                                                    ['https://www.googleapis.com/auth/spreadsheets',
                                                                     'https://www.googleapis.com/auth/drive'])
-    httpAuth = credentials.authorize(httplib2.Http())
-    service = apiclient.discovery.build('sheets', 'v4', http=httpAuth)
+    httpauth = credentials.authorize(httplib2.Http())
+    service = apiclient.discovery.build('sheets', 'v4', http=httpauth)
 
-    spreadsheet_id = '1eK_rP6bd8XH1mlE4BrVyFGvNnO693_EuTzQ4cNdljcA'
+    spreadsheet_id = '19wgs4k4XLMGi5NCQHnNcrIUDAQdaV1ZQDYGheeutsJU'
     values = service.spreadsheets().values().get(spreadsheetId=spreadsheet_id, range='A1:D')
     response = values.execute()
     table = list(response.values())[2][1:]
