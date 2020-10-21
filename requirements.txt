@@ -1,4 +1,5 @@
+pip install --upgrade pip
+pip install telebot --use-feature=2020-resolver
 datetime
 httplib2
 apiclient
-telebot
