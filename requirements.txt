@@ -1,5 +1,6 @@
-pip install --upgrade pip
-pip install telebot --use-feature=2020-resolver
-datetime
-httplib2
-apiclient
+datetime~=4.3
+httplib2~=0.18.1
+apiclient~=1.0.4
+google-api-python-client~=1.12.3
+telebot~=0.0.2
+oauth2client~=4.1.3
