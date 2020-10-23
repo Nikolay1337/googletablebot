@@ -14,8 +14,8 @@ global dateperiod2
 @mybot.message_handler(commands=['start'])
 def messages(message):
     mybot.send_message(message.chat.id, 'Привет, ' + message.chat.first_name + '.\n'
-                                        'Введи период в формате: 01.01.2019-31.12.2020.\n'
-                                        'Четвертый столбец должен быть заполнен dd/mm/yyyy,\n'
+                                        'Введи период в формате: 01.01.2019-31.12.2020.')
+    mybot.send_message(message.chat.id, 'ВАЖНО!\nЧетвертый столбец должен быть заполнен dd/mm/yyyy,\n'
                                         'во втором столбце поиск строго по "старая/новая",\n'
                                         'иначе строки с неправильным форматом не будут учтены.',
                        reply_markup=buttons())
