@@ -4,9 +4,11 @@ import httplib2
 import apiclient
 from oauth2client.service_account import ServiceAccountCredentials
 import telebot
+import os
 
 
-mybot = telebot.TeleBot('TOKEN_BOT')
+bot_token = os.environ('TOKEN_BOT')
+mybot = telebot.TeleBot(bot_token)
 global dateperiod1
 global dateperiod2
 
