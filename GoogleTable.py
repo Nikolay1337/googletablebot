@@ -7,7 +7,7 @@ import telebot
 import os
 
 
-bot_token = os.environ('TOKEN_BOT')
+bot_token = os.environ['TOKEN_BOT']
 mybot = telebot.TeleBot(bot_token)
 global dateperiod1
 global dateperiod2
